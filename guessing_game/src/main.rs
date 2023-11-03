@@ -11,6 +11,7 @@ fn main() {
     
 }
 
+
 fn guess_fn(){
 
     println!("Guess the Number!");
@@ -19,21 +20,23 @@ fn guess_fn(){
 
     let secrete_number = rand::thread_rng().gen_range(1..=100);
 
-    let mut guess = String::new();
-
+    let mut guess = String::new(); //initial guess line, this will bring a data type mismatch with secret number generator.
+    
     io::stdin()
     .read_line(&mut guess)
-
+    
     // the .expect method is a result method that handles ok and error
     .expect("Failed to read line");
 
-    match guess.cmp(&secrete_number) {
-        Ordering::Less => println!("too small"),
-        Ordering::Greater => println!("too big"),
-        Ordering::Equal => println!("Congratulations!! You Win!!!"),
-    }
+    let guess: u32 = guess.trim().parse().expect("please type a number!");
 
-    println!("You guessed: {guess}");
+    match guess.cmp(&secrete_number) {
+        Ordering::Less => println!("too small, You guessed: {guess}"),
+        Ordering::Greater => println!("too big, You guessed: {guess}"),
+        Ordering::Equal => println!("Congratulations!! You Win!!! You guessed: {guess}"),
+    }
+    
+
     println!("Correct number is {secrete_number}");
 
 }
