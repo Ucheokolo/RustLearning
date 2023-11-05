@@ -1,3 +1,4 @@
+mod file1;
 use std::{io, cmp:: Ordering }; // this import the input/output library. it comes from the standard library a.k.a std
 use rand::Rng;
 
@@ -5,6 +6,7 @@ use rand::Rng;
 fn main() {
 
     print_values();
+    file1::main1();
 
     let generated_number = rand::thread_rng().gen_range(1..=100);
 
